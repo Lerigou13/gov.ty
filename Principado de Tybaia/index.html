@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início | Principado de Tybaia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<meu-cabecalho></meu-cabecalho>
+
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <img src="https://www.micropedia.com.br/images/b/b4/Brasao_Tybaia.png" alt="Brasão" class="hero-brasao">
+            <div class="hero-text">
+                <h1>Bem-Vindo(a) ao <br> Principado de Tybaia!</h1>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('historia').scrollIntoView({behavior: 'smooth'})">
+            <span></span>
+        </div>
+    </section>
+
+    <section class="history-section" id="historia">
+        <h2>Nossa História</h2>
+        <div class="history-text">
+            <p>O Principado de Tybaia fundamenta sua soberania na busca incessante pela excelência institucional e na preservação da herança cultural de seus distritos. Nossa trajetória é marcada pelo desenvolvimento de uma estrutura política robusta, onde a tradição se une à modernidade legislativa sob a égide da Coroa.</p>
+            <p>Como uma micronação vibrante no cenário lusófono, Tybaia promove a integração entre os distritos de Maranguape, Maracanaú, Caucaia e o Distrito Neutro. Nossa missão é garantir um ambiente de simulação política de alto nível, fundamentado no respeito mútuo e progresso nacional.</p>
+        </div>
+    </section>
+
+    <section class="citizenship-section">
+        <div class="citizenship-content">
+            <h3>Faça Parte da Nossa Nação</h3>
+            <p>Inicie sua jornada hoje mesmo e contribua com nossa história.</p>
+            <a href="#" class="btn-cidadania">Solicitar Cidadania</a>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <h2>Últimas Notícias</h2>
+        <div class="news-layout">
+            <article class="news-main-card">
+                <div class="main-img"></div>
+                <div class="main-info">
+                    <span style="color: var(--vermelho); font-weight: bold; font-size: 0.8rem;">21 ABR 2026</span>
+                    <h3>Conselho dos Elos aprova novas diretrizes administrativas</h3>
+                    <p>A nova medida visa modernizar a gestão dos distritos e ampliar a transparência...</p>
+                    <a href="#" style="color: var(--azul); font-weight: bold; text-decoration: none;">Ler mais</a>
+                </div>
+            </article>
+
+            <div class="news-sidebar">
+                <article class="small-news-card">
+                    <span style="color: var(--vermelho); font-weight: bold; font-size: 0.75rem;">19 ABR 2026</span>
+                    <h4>Chancelaria confirma novos acordos diplomáticos</h4>
+                </article>
+                <article class="small-news-card">
+                    <span style="color: var(--vermelho); font-weight: bold; font-size: 0.75rem;">15 ABR 2026</span>
+                    <h4>Preparativos para o Dia da Independência</h4>
+                </article>
+                <article class="small-news-card">
+                    <span style="color: var(--vermelho); font-weight: bold; font-size: 0.75rem;">10 ABR 2026</span>
+                    <h4>Nota oficial sobre a nova estrutura do Diário do Governo</h4>
+                </article>
+            </div>
+        </div>
+    </section>
+</body>
+
+<meu-rodape></meu-rodape>
+
+</html>

@@ -1,0 +1,554 @@
+:root {
+    --azul: #003366;
+    --azul-escuro: #001f40;
+    --dourado: #d4af37;
+    --branco: #ffffff;
+    --gelo: #f5f5f5;
+    --texto: #333333;
+    --vermelho: #c62828;
+    --verde: #0ca52b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Georgia", serif;
+    background-color: var(--gelo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+/* --- CABEÇALHO --- */
+header {
+    background-color: var(--azul);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 4px solid var(--dourado);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Botão do Menu Estilizado */
+.btn-trigger {
+    background: none;
+    border: none;
+    color: var(--dourado);
+    font-size: 2.2rem;
+    cursor: pointer;
+    padding: 0;
+    display: none; /* Só aparece no Desktop se o menu estiver fechado */
+    line-height: 1;
+    transition: color 0.3s, transform 0.2s;
+    outline: none;
+}
+
+.btn-trigger:hover {
+    color: var(--dourado);
+    transform: scale(1.1);
+}
+
+.brand-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brasao {
+    height: 55px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.nome-principado {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--branco);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- SIDEBAR (MENU) --- */
+nav#sidebar {
+    background-color: var(--azul);
+    width: 330px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid var(--dourado);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.4);
+}
+
+.menu-scroll {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 35px 20px;
+    background: var(--azul-escuro);
+    text-align: center;
+    border-bottom: 1px solid var(--branco);
+}
+
+.sidebar-header h2 {
+    color: var(--dourado);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* Seções do Menu */
+.nav-list { padding: 20px 0; }
+
+.nav-group { margin-bottom: 20px; }
+
+.group-title {
+    display: block;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--branco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.group-title::after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    bottom: -2px;
+    width: 30px;
+    height: 2px;
+    background: var(--dourado);
+}
+
+.sub-links {
+    list-style: none;
+    padding: 10px 0 0 30px;
+}
+
+.sub-links li a {
+    display: block;
+    padding: 7px 15px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: 0.3s;
+}
+
+.sub-links li a:hover {
+    color: var(--dourado);
+    padding-left: 25px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Coluna de Fechamento (Seta Lateral) */
+.toggle-column {
+    width: 45px;
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-left: 1px solid var(--branco);
+}
+
+.toggle-column span {
+    color: var(--dourado);
+    font-size: 1.3rem;
+    transition: transform 0.3s;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* --- AJUSTE DA PÁGINA INTEIRA --- */
+
+body {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+    /* ESTADO: MENU ABERTO */
+    body.menu-open { 
+        margin-left: 330px; /* Empurra a página toda */
+        width: calc(100% - 330px);
+    }
+    
+    body.menu-open header { 
+        left: 330px; /* Move o header fixo para a direita */
+        width: calc(100% - 330px); /* Encolhe o header para não sair da tela */
+    }
+
+    body.menu-open nav#sidebar { 
+        transform: translateX(0); 
+    }
+
+    body.menu-open .btn-trigger { 
+        display: none; 
+    }
+
+    /* ESTADO: MENU FECHADO */
+    body.menu-closed { 
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    body.menu-closed header { 
+        left: 0;
+        width: 100%;
+    }
+
+    body.menu-closed nav#sidebar { 
+        transform: translateX(-100%); 
+    }
+
+    body.menu-closed .btn-trigger { 
+        display: block; 
+    }
+}
+
+/* Mobile / Tablet */
+@media (max-width: 1023px) {
+    nav#sidebar {
+        width: 300px;
+        transform: translateX(-100%);
+    }
+    nav#sidebar.mobile-open { transform: translateX(0); }
+    
+    .toggle-column { display: none; }
+    .btn-trigger { display: block !important; }
+    .nome-principado { font-size: 1.1rem; letter-spacing: 1px; }
+
+    .btn-close-mobile {
+        display: block;
+        width: 80%;
+        margin: 20px auto;
+        background: transparent;
+        border: 1px solid var(--vermelho);
+        color: var(--vermelho);
+        padding: 10px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.75);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+    }
+    #overlay.active { display: block; }
+}
+
+/* --- HERO SECTION (AJUSTADA) --- */
+.hero {
+    position: relative;
+    height: 90vh; /* Reduzido para garantir que o resto apareça */
+    width: 100%;
+    background: linear-gradient(rgba(0, 31, 64, 0.75), rgba(0, 31, 64, 0.75)), 
+                url('https://www.micropedia.com.br/images/0/0f/Bandeira_Tybaia.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--branco);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 900px;
+    padding: 20px;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.hero-brasao {
+    height: 110px; /* Brasão menor */
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+}
+
+.hero-text h1 {
+    font-size: 2.5rem; /* Fonte mais equilibrada */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    border-left: 5px solid var(--dourado);
+    padding-left: 20px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-bottom: 3px solid var(--dourado);
+    border-right: 3px solid var(--dourado);
+    transform: rotate(45deg);
+}
+
+/* --- HISTÓRIA --- */
+.history-section {
+    padding: 80px 10% 60px;
+    background-color: var(--branco);
+}
+
+.history-section h2 {
+    font-size: 2rem;
+    color: var(--azul);
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.history-text {
+    font-size: 1.15rem;
+    text-align: justify;
+    max-width: 900px;
+    margin: 0 auto;
+    column-count: 2;
+    column-gap: 50px;
+}
+
+/* --- SEÇÃO DE CIDADANIA (DESTAQUE) --- */
+.citizenship-section {
+    background: linear-gradient(rgba(0, 31, 64, 0.9), rgba(0, 31, 64, 0.9)),
+                url('https://www.micropedia.com.br/images/0/0f/Bandeira_Tybaia.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 80px 20px;
+    text-align: center;
+    color: var(--branco);
+    border-top: 3px solid var(--dourado);
+    border-bottom: 3px solid var(--dourado);
+}
+
+.citizenship-content h3 {
+    font-size: 2.2rem;
+    color: var(--dourado);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.btn-cidadania {
+    display: inline-block;
+    padding: 15px 45px;
+    background-color: var(--dourado);
+    color: var(--azul-escuro);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.btn-cidadania:hover {
+    background-color: var(--branco);
+    transform: translateY(-3px);
+}
+
+/* --- SEÇÃO DE NOTÍCIAS --- */
+.news-section {
+    padding: 70px 10%;
+    background-color: var(--gelo);
+}
+
+.news-section h2 {
+    font-size: 1.8rem;
+    color: var(--azul);
+    margin-bottom: 35px;
+    border-bottom: 3px solid var(--dourado);
+    display: inline-block;
+}
+
+.news-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+}
+
+.news-main-card {
+    background: var(--branco);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-bottom: 5px solid var(--azul);
+}
+
+.main-img {
+    width: 100%;
+    height: 320px;
+    background: #ccc url('https://via.placeholder.com/800x450') center/cover;
+}
+
+.main-info { padding: 25px; }
+.main-info h3 { font-size: 1.8rem; color: var(--azul); margin: 10px 0; }
+
+.news-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.small-news-card {
+    background: var(--branco);
+    padding: 20px;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.small-news-card:hover { border-left-color: var(--dourado); }
+.small-news-card h4 { font-size: 1.1rem; color: var(--azul); margin-top: 5px; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@media (max-width: 1023px) {
+    .news-layout { grid-template-columns: 1fr; }
+    .history-text { column-count: 1; }
+    .hero-text h1 { font-size: 1.8rem; text-align: center; border-left: none; }
+    .hero-content { flex-direction: column; }
+}
+
+/* --- FOOTER CHANCELARIA --- */
+footer {
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 60px 20px 0;
+    border-top: 4px solid var(--dourado);
+    text-align: center;
+    font-family: "Georgia", serif;
+}
+
+.chancelaria-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.chancelaria-logo {
+    height: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.chancelaria-title {
+    color: var(--dourado);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.chancelaria-subtitle {
+    font-size: 0.9rem;
+    color: var(--gelo);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.contact-item {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item:hover {
+    color: var(--dourado);
+}
+
+.btn-portal {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid var(--dourado);
+    color: var(--dourado);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.btn-portal:hover {
+    background-color: var(--dourado);
+    color: var(--azul);
+}
+
+/* --- BARRA FINAL --- */
+.footer-bottom {
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: var(--gelo);
+}
+
+/* Cores da Bandeira */
+.flag-strip {
+    height: 5px;
+    width: 100%;
+    display: flex;
+}
+.flag-strip div { flex: 1; }
+.bg-blue { background-color: var(--azul-escuro); }
+.bg-white { background-color: var(--branco); }
+.bg-green { background-color: var(--verde); }
+.bg-red { background-color: var(--vermelho); }
